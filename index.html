@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EroxPanel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white font-sans">
+
+<!-- Navbar -->
+<header class="flex justify-between items-center p-5 border-b border-gray-800">
+  <h1 class="text-2xl font-bold text-green-400">EroxPanel</h1>
+  <a href="#pricing" class="bg-green-500 px-4 py-2 rounded-xl">Buy Now</a>
+</header>
+
+<!-- Hero -->
+<section class="text-center py-20">
+  <h2 class="text-4xl font-bold mb-4">Premium Gaming Panel</h2>
+  <p class="text-gray-400 mb-6">Fast, Secure & Reliable Tools</p>
+  <a href="#pricing" class="bg-green-500 px-6 py-3 rounded-xl text-lg">Get Started</a>
+</section>
+  
+<p class="px-6">
+  <span class="text-cyan-400 font-bold">Erox Panel</span> is the #1 mobile panel designed specifically for CS mode and BR mode rank push. Our professional rank push panel combines advanced performance optimization, tactical enhancements, pattern stabilization, and connection improvements to help you reach Grandmaster rank faster than manual gameplay.
+</p>
+
+<!-- Features -->
+<section class="py-16 px-6">
+  <h2 class="text-3xl text-center mb-10">Features</h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-gray-900 p-6 rounded-2xl">⚡ Fast Performance</div>
+    <div class="bg-gray-900 p-6 rounded-2xl">🔒 Secure System</div>
+    <div class="bg-gray-900 p-6 rounded-2xl">🎮 Easy to Use</div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-16 px-6">
+  <h2 class="text-3xl text-center mb-10">Price & validity</h2>
+  <div class="grid md:grid-cols-3 gap-6 text-center">
+    <div class="bg-gray-900 p-6 rounded-2xl">
+      <h3 class="text-xl mb-2">15 Days</h3>
+      <p class="text-2xl font-bold">Rs 500</p>
+      <button onclick="openPopup('15 Days Plan')" class="mt-4 bg-green-500 px-4 py-2 rounded-xl">Buy</button>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-2xl">
+      <h3 class="text-xl mb-2">30 Days</h3>
+      <p class="text-2xl font-bold">Rs 900</p>
+      <button onclick="openPopup('30 Days Plan')" class="mt-4 bg-green-500 px-4 py-2 rounded-xl">Buy</button>
+    </div>
+    <div class="bg-gray-900 p-6 rounded-2xl">
+      <h3 class="text-xl mb-2">Permanent</h3>
+      <p class="text-2xl font-bold">Rs 1400</p>
+      <button onclick="openPopup('Permanent')" class="mt-4 bg-green-500 px-4 py-2 rounded-xl">Buy</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-6 border-t border-gray-800">
+  <p class="mb-2">© 2026 EroxPanel. All rights reserved.</p>
+  <div class="flex justify-center space-x-6">
+    <a href="https://www.facebook.com/EroxPanel" target="_blank" class="text-blue-500 font-bold">Facebook</a>
+    <a href="https://www.tiktok.com/@mikey_ffx2?_r=1&_t=ZS-955LVYkdCLZ" target="_blank" class="text-pink-500 font-bold">TikTok</a>
+  </div>
+</footer>
+
+<!-- POPUP -->
+<div id="popup" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center">
+  <div class="bg-gray-900 p-6 rounded-2xl text-center w-80">
+    <h2 id="popupTitle" class="text-2xl mb-4 text-green-400"></h2>
+
+    <p class="mb-2 text-sm text-gray-400">Scan to Pay</p>
+    <img src="https://i.imgur.com/5gkGWcJ.jpeg" class="mx-auto rounded-2xl mb-4 w-44 shadow-lg">
+
+    <!-- FORM -->
+    <form id="paymentForm" class="flex flex-col space-y-2 text-left" oninput="checkInputs();">
+      <input type="text" id="esewaNumber" name="esewaNumber" placeholder="Your eSewa Number" class="p-2 rounded-xl bg-gray-800">
+      <p id="numberError" class="text-red-500 text-xs hidden">Number must start with 98, 97, or 96 and be 10 digits</p>
+
+      <input type="text" id="esewaName" name="esewaName" placeholder="eSewa Name" class="p-2 rounded-xl bg-gray-800">
+
+      <input type="email" id="email" name="email" placeholder="Email Address" class="p-2 rounded-xl bg-gray-800">
+      <p id="emailError" class="text-red-500 text-xs hidden">Email must end with @gmail.com</p>
+
+      <label class="text-gray-400 mt-2">Upload Payment Screenshot</label>
+      <input type="file" id="screenshot" name="screenshot" accept="image/*" class="p-2 rounded-xl bg-gray-800" onchange="checkInputs();">
+    </form>
+
+    <p class="text-red-500 text-sm mt-4">
+      ⚠️ Send exact amount or no service & no refund.
+    </p>
+
+    <!-- BUTTONS -->
+    <div class="flex space-x-2 mt-4">
+      <button onclick="closePopup()" class="flex-1 bg-red-500 py-2 rounded-xl">Close</button>
+
+      <button id="confirmBtn"
+        onclick="submitForm()"
+        class="flex-1 py-2 rounded-xl bg-gray-600 text-white cursor-not-allowed transition-all duration-300"
+        disabled>
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #22c55e; }
+  50% { box-shadow: 0 0 15px #22c55e; }
+  100% { box-shadow: 0 0 5px #22c55e; }
+}
+.confirm-active {
+  animation: glow 1.5s infinite;
+}
+</style>
+
+<script>
+// Open & Close Popup
+function openPopup(plan){
+  document.getElementById("popup").classList.remove("hidden");
+  document.getElementById("popupTitle").innerText = plan;
+}
+function closePopup(){
+  document.getElementById("popup").classList.add("hidden");
+}
+
+// Validation
+function checkInputs(){
+  const n = document.getElementById("esewaNumber").value.trim();
+  const name = document.getElementById("esewaName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const file = document.getElementById("screenshot").files.length;
+  const btn = document.getElementById("confirmBtn");
+  const numberError = document.getElementById("numberError");
+  const emailError = document.getElementById("emailError");
+
+  const isValidNumber = /^(98|97|96)\d{8}$/.test(n);
+  if(!isValidNumber && n.length>0){numberError.classList.remove("hidden");}else{numberError.classList.add("hidden");}
+
+  const isValidEmail = /@gmail\.com$/.test(email);
+  if(!isValidEmail && email.length>0){emailError.classList.remove("hidden");}else{emailError.classList.add("hidden");}
+
+  if(isValidNumber && name && isValidEmail && file>0){
+    btn.disabled=false;
+    btn.classList.remove("bg-gray-600","cursor-not-allowed");
+    btn.classList.add("bg-green-500","confirm-active","cursor-pointer");
+  }else{
+    btn.disabled=true;
+    btn.classList.remove("bg-green-500","confirm-active","cursor-pointer");
+    btn.classList.add("bg-gray-600","cursor-not-allowed");
+  }
+}
+
+// Submit form locally (no EmailJS)
+function submitForm(){
+  const n = document.getElementById("esewaNumber").value.trim();
+  const name = document.getElementById("esewaName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const file = document.getElementById("screenshot").files.length;
+
+  if(n && name && email && file>0){
+    alert("Payment info submitted successfully! ✅");
+    closePopup();
+  } else {
+    alert("Please fill all fields correctly.");
+  }
+}
+</script>
+
+</body>
+</html>
